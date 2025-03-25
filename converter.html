@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Currency Converter</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script>
+        async function convertCurrency() {
+            let amount = document.getElementById("amount").value;
+            let from = document.getElementById("from").value;
+            let to = document.getElementById("to").value;
+            
+            let response = await fetch(`https://api.exchangerate-api.com/v4/latest/${from}`);
+            let data = await response.json();
+            let rate = data.rates[to];
+            let result = amount * rate;
+            
+            document.getElementById("result").innerText = `${amount} ${from} = ${result.toFixed(2)} ${to}`;
+        }
+    </script>
+</head>
+<body class="protected">
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="converter.html">Converter</a>
+        <a href="about.html">About</a>
+    </nav>
+
+    <div class="converter-box">
+        <h2>Currency Converter</h2>
+        <input type="number" id="amount" placeholder="Enter amount" />
+
+        <label for="from">From:</label>
+        <select id="from"></select>
+
+        <label for="to"></label>
+        <select id="to"></select>
+
+        <button onclick="convertCurrency()">Convert</button>
+        <h3 id="result"></h3>
+        
+    </div>
+
+    <div class="logout-box" id="logoutBox">
+        <p class="welcome-message" id="welcomeMessage"></p>
+        ><a href="index.html"><button onclick="logout()">logout</button></a>
+    </div>
+    
+
+    <script>
+        let currencies = [
+            { code: "AED", country: "United Arab Emirates Dirham" },
+            { code: "AFN", country: "Afghan Afghani" },
+            { code: "ALL", country: "Albanian Lek" },
+            { code: "AMD", country: "Armenian Dram" },
+            { code: "ANG", country: "Netherlands Antillean Guilder" },
+            { code: "AOA", country: "Angolan Kwanza" },
+            { code: "ARS", country: "Argentine Peso" },
+            { code: "AUD", country: "Australian Dollar" },
+            { code: "AWG", country: "Aruban Florin" },
+            { code: "AZN", country: "Azerbaijani Manat" },
+            { code: "BAM", country: "Bosnia-Herzegovina Convertible Mark" },
+            { code: "BBD", country: "Barbadian Dollar" },
+            { code: "BDT", country: "Bangladeshi Taka" },
+            { code: "BGN", country: "Bulgarian Lev" },
+            { code: "BHD", country: "Bahraini Dinar" },
+            { code: "BIF", country: "Burundian Franc" },
+            { code: "BND", country: "Brunei Dollar" },
+            { code: "BOB", country: "Bolivian Boliviano" },
+            { code: "BRL", country: "Brazilian Real" },
+            { code: "BSD", country: "Bahamian Dollar" },
+            { code: "BTC", country: "Bitcoin" },
+            { code: "BTN", country: "Bhutanese Ngultrum" },
+            { code: "BWP", country: "Botswana Pula" },
+            { code: "BYN", country: "Belarusian Ruble" },
+            { code: "CAD", country: "Canadian Dollar" },
+            { code: "CHF", country: "Swiss Franc" },
+            { code: "CNY", country: "Chinese Yuan" },
+            { code: "COP", country: "Colombian Peso" },
+            { code: "CRC", country: "Costa Rican Colón" },
+            { code: "CUP", country: "Cuban Peso" },
+            { code: "CZK", country: "Czech Koruna" },
+            { code: "DKK", country: "Danish Krone" },
+            { code: "DOP", country: "Dominican Peso" },
+            { code: "EGP", country: "Egyptian Pound" },
+            { code: "EUR", country: "Euro" },
+            { code: "GBP", country: "British Pound Sterling" },
+            { code: "HKD", country: "Hong Kong Dollar" },
+            { code: "IDR", country: "Indonesian Rupiah" },
+            { code: "ILS", country: "Israeli New Shekel" },
+            { code: "INR", country: "Indian Rupee" },
+            { code: "JPY", country: "Japanese Yen" },
+            { code: "KRW", country: "South Korean Won" },
+            { code: "MXN", country: "Mexican Peso" },
+            { code: "MYR", country: "Malaysian Ringgit" },
+            { code: "NGN", country: "Nigerian Naira" },
+            { code: "NOK", country: "Norwegian Krone" },
+            { code: "NZD", country: "New Zealand Dollar" },
+            { code: "PHP", country: "Philippine Peso" },
+            { code: "PKR", country: "Pakistani Rupee" },
+            { code: "PLN", country: "Polish Zloty" },
+            { code: "RUB", country: "Russian Ruble" },
+            { code: "SAR", country: "Saudi Riyal" },
+            { code: "SEK", country: "Swedish Krona" },
+            { code: "SGD", country: "Singapore Dollar" },
+            { code: "THB", country: "Thai Baht" },
+            { code: "TRY", country: "Turkish Lira" },
+            { code: "UAH", country: "Ukrainian Hryvnia" },
+            { code: "USD", country: "United States Dollar" },
+            { code: "VND", country: "Vietnamese Dong" },
+            { code: "ZAR", country: "South African Rand" }
+        ];
+
+        let selectFrom = document.getElementById("from");
+        let selectTo = document.getElementById("to");
+        
+        currencies.forEach(currency => {
+            let option = document.createElement("option");
+            option.value = currency.code;
+            option.textContent = `${currency.country} (${currency.code})`;
+            selectFrom.appendChild(option);
+            selectTo.appendChild(option.cloneNode(true));
+        });
+
+    </script>
+    <body style="background-image: url('img.jpg'); background-size: cover;"></body>
+</body>
+</html>

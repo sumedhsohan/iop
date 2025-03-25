@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login & Register - Currency Converter</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="converter.html">Converter</a>
+        <a href="travel.html">Travel guide</a>
+        <a href="about.html">About</a>
+    </nav>
+
+    <div class="container">
+        <!-- Login Section -->
+        <div id="loginForm">
+            <h2>Login</h2>
+            <input type="text" id="username" placeholder="Username" />
+            <input type="password" id="password" placeholder="Password" />
+            <button onclick="login()">Login</button>
+            <p>Don't have an account? <a href="#" onclick="showRegister()">Register here</a></p>
+        </div>
+
+        <!-- Registration Section -->
+        <div id="registerForm" style="display: none;">
+            <h2>Register</h2>
+            <input type="text" id="newUsername" placeholder="New Username" />
+            <input type="password" id="newPassword" placeholder="New Password" />
+            <button onclick="register()">Register</button>
+            <p>Already have an account? <a href="#" onclick="showLogin()">Login here</a></p>
+        </div>
+    </div>
+    <body style="background-image: url('img.jpg'); background-size: cover;">
+
+</body>
+</html>

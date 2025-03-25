@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Guide</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            text-align: center; 
+            background-color: #f4f4f4; 
+            margin: 0; 
+            padding: 0;
+        }
+        h1 {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            margin: 0;
+        }
+        select, button {
+            margin: 10px; 
+            padding: 10px; 
+            font-size: 16px;
+        }
+        button {
+            background-color: #008CBA;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #005f73;
+        }
+        #guide {
+            margin-top: 20px; 
+            padding: 20px; 
+            border: 1px solid #ccc; 
+            background-color: white;
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            display: none; 
+            text-align: left;
+        }
+        ul {
+            text-align: left;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Travel Guide</h1>
+    <label for="country">Select a Country:</label>
+    <select id="country">
+        <option value="">--Choose a country--</option>
+        <option value="france">France</option>
+        <option value="japan">Japan</option>
+        <option value="italy">Italy</option>
+        <option value="usa">USA</option>
+    </select>
+    <button onclick="showGuide()">Get Travel Plan</button>
+    
+    <div id="guide"></div>
+    
+    <script>
+        const travelPlans = {
+            france: {
+                title: "France Travel Guide",
+                places: ["Eiffel Tower", "Louvre Museum", "Palace of Versailles", "French Riviera"],
+                plan: "Day 1: Visit Eiffel Tower and Seine River cruise. Day 2: Explore Louvre Museum. Day 3: Palace of Versailles tour. Day 4: Relax at the French Riviera."
+            },
+            japan: {
+                title: "Japan Travel Guide",
+                places: ["Mount Fuji", "Tokyo Disneyland", "Kyoto Temples", "Osaka Castle"],
+                plan: "Day 1: Visit Mount Fuji and Lake Kawaguchi. Day 2: Explore Tokyo Disneyland. Day 3: Kyoto's temples and shrines. Day 4: Osaka Castle and street food tour."
+            },
+            italy: {
+                title: "Italy Travel Guide",
+                places: ["Colosseum", "Venice Canals", "Leaning Tower of Pisa", "Amalfi Coast"],
+                plan: "Day 1: Explore the Colosseum in Rome. Day 2: Gondola ride in Venice. Day 3: Visit Pisa and its Leaning Tower. Day 4: Enjoy scenic views at Amalfi Coast."
+            },
+            usa: {
+                title: "USA Travel Guide",
+                places: ["Grand Canyon", "Statue of Liberty", "Disney World", "Las Vegas Strip"],
+                plan: "Day 1: Hike Grand Canyon. Day 2: Visit Statue of Liberty in NYC. Day 3: Enjoy Disney World. Day 4: Experience the nightlife in Las Vegas."
+            }
+        };
+        
+        function showGuide() {
+            const country = document.getElementById("country").value;
+            const guideDiv = document.getElementById("guide");
+            
+            if (country && travelPlans[country]) {
+                const guide = travelPlans[country];
+                guideDiv.innerHTML = `<h2>${guide.title}</h2><h3>Best Places to Visit:</h3><ul>` +
+                    guide.places.map(place => `<li>${place}</li>`).join('') +
+                    `</ul><h3>Suggested Travel Plan:</h3><p>${guide.plan}</p>`;
+                guideDiv.style.display = "block";
+            } else {
+                guideDiv.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
